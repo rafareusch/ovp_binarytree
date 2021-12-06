@@ -22,22 +22,21 @@ int main(int argc, char **argv) {
     printArray(ctrl->vector, 0, VECTOR_SIZE-1);
 
     // calculates the size of each sub-vector
-    ctrl->subVector_size = ...
+    ctrl->subVector_size = VECTOR_SIZE / SYSTEM_SIZE;
+   
     printf("Each slave Sub-Vector has %d values\n", ctrl->subVector_size);
 
     // informs to each PE the endpoint of its sub-vector
     for(i=0; i < SYSTEM_SIZE; i++){
-        ctrl->subVector_finishPoint[i] = ...
+        ctrl->subVector_finishPoint[i] = i*ctrl->subVector_size-1;
         ctrl->subVector_status[i] = START; // releases the given processor to start
+        printf("id = %d // (%d,%d) \n", i, (i)*ctrl->subVector_size ,(i)*ctrl->subVector_size+ctrl->subVector_size-1);
     }
 
     // sort my sub vector
     printf("Processor %d starting the sort process...\n", id);
-    quickSort(-,-,-);
-
+    quickSort(ctrl->vector,0,ctrl->subVector_size-1);
     // merge process -- if needed
-
-    ...
 
 
     // informs that it's DONE!
