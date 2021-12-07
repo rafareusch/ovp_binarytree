@@ -8,7 +8,7 @@
 #include "simulatorIntercepts.h"
 
 
-bool isPair(int val){
+bool isEven(int val){
 	if ((val % 2) == 0) {
 		return true;
 	}  
@@ -37,9 +37,9 @@ int main(int argc, char **argv) {
 	int step = 1;
 	int remoteStartIndex = 0;
 	int remoteEndIndex = 0;
-    while ((layer < (SYSTEM_SIZE/2)) && isPair(id))
+    while ((layer < (SYSTEM_SIZE/2)) && isEven(id))
 	{	
-		if ( isPair(id) && isPair(id / step) && (id % step == 0) && (id+step<SYSTEM_SIZE) ){ 
+		if ( isEven(id) && isEven(id / step) && (id % step == 0) && (id+step<SYSTEM_SIZE) ){ 
 			while(ctrl->subVector_status[id+step]!=DONE){ /* waits for the slave to be done */ }
 			remoteEndIndex = ctrl->subVector_finishPoint[id+step];
 			remoteStartIndex = ctrl->subVector_startPoint[id+step]; 
