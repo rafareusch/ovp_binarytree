@@ -22,7 +22,7 @@
 #include "shared.h"
 
 // the size of the vector that must be sorted
-#define VECTOR_SIZE 104
+#define VECTOR_SIZE 96
 
 // the system size
 #define SYSTEM_SIZE 8
@@ -37,6 +37,7 @@ typedef struct ctrlS {
     // informs the processor status
     volatile int subVector_status[SYSTEM_SIZE]; 
     // informs each processor its finish point
+    volatile int subVector_startPoint[SYSTEM_SIZE];
     volatile int subVector_finishPoint[SYSTEM_SIZE];
     // informs the size that each subVector have
     volatile int subVector_size;
